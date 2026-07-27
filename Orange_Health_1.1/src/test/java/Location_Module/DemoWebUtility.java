@@ -6,12 +6,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
 import com.ty.orangehealth.Generic_Utility.WebDriverUtility;
 
 public class DemoWebUtility {
+	@Test
+	public void clickandhold()
+	{
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://demoapps.qspiders.com/ui/clickHold?sublist=0");
+		WebElement ele = driver.findElement(By.id("circle"));
+		
+		WebDriverUtility wu=new WebDriverUtility();
+		wu.clickAndHold(driver, ele);
+		
+		
+	}
 
-	public static void main(String[] args) {
+	@Test
+	public void draganddrop()
+	{
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://practice.expandtesting.com/drag-and-drop");
@@ -21,10 +37,7 @@ public class DemoWebUtility {
 		WebElement target = driver.findElement(By.id("column-b"));
 		
 		WebDriverUtility wu=new WebDriverUtility();
-		wu.dragAndDrop(driver,source, target);
-		
-		
-
+		wu.dragAndDrop(driver,source, target);	
 	}
 
 }
