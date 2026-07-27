@@ -75,10 +75,10 @@ public class BaseClassTest {
 	@AfterSuite
 	public void configAS() {
 		try {
-			if(FileUtility.wb == null) {
+			if(readData.wb == null) {
 				throw new IllegalArgumentException("Workbook is null ");
 			}
-			FileUtility.wb.close();
+			readData.wb.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
