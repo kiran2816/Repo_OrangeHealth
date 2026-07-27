@@ -9,9 +9,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class FileUtility {
-	public Properties pobj;
-	public Workbook wb;
-	{
+	private Properties pobj;
+	private Workbook wb;
+	public FileUtility(){
 		loadPropertiesClass();
 		loadWorkbook();
 	}
@@ -71,6 +71,18 @@ public class FileUtility {
 			throw new IllegalArgumentException("invalid data in Excel file : " + data);
 		}
 		return data;
+	}
+	
+	public void closeWorkbook() {
+		try {
+			if(wb == null) {
+				throw new IllegalArgumentException("Workbook is null ");
+			}
+			wb.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
