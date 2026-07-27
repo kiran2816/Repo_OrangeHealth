@@ -1,10 +1,6 @@
 package com.ty.orangehealth.business_utility;
 
-import java.io.IOException;
 import java.time.Duration;
-
-
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -21,7 +17,7 @@ import com.ty.orangehealth.Generic_Utility.ThreadSafeClass;
 
 
 public class BaseClassTest {
-	FileUtility readData = new FileUtility();
+	protected FileUtility readData = new FileUtility();
 	WebDriver driver;
 	public static WebDriver sdriver;
 	@BeforeSuite
@@ -37,7 +33,7 @@ public class BaseClassTest {
 		if(browser == null || browser.isBlank()) {
 			browser = test.getParameter("browser");
 			if(browser == null || browser.isBlank()) {
-				browser = readData.fromProperties("broowser");
+				browser = readData.fromProperties("browser");
 			}
 		}
 		
@@ -74,15 +70,7 @@ public class BaseClassTest {
 	
 	@AfterSuite
 	public void configAS() {
-		try {
-			if(readData.wb == null) {
-				throw new IllegalArgumentException("Workbook is null ");
-			}
-			readData.wb.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		readData.closeWorkbook();
 		System.out.println("DB coonection closed");
 	}
 }
