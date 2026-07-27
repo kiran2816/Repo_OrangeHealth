@@ -9,14 +9,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class FileUtility {
-	public static Properties pobj;
-	public static Workbook wb;
-	static {
+	public Properties pobj;
+	public Workbook wb;
+	{
 		loadPropertiesClass();
 		loadWorkbook();
 	}
 	
-	public static void loadPropertiesClass() {
+	public void loadPropertiesClass() {
 		try (FileInputStream fis = new FileInputStream("./Test-Data/OH_CD.properties")) {
 			pobj = new Properties();
 			pobj.load(fis);	
@@ -27,7 +27,7 @@ public class FileUtility {
 		}
 	}
 	
-	public static void loadWorkbook() {
+	public void loadWorkbook() {
 		try(FileInputStream fis = new FileInputStream("./Test-Data/TestScriptData.xlsx")) {
 			wb = WorkbookFactory.create(fis);
 			
