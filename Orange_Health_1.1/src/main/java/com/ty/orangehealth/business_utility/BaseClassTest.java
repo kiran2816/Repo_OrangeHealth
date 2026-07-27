@@ -1,5 +1,6 @@
 package com.ty.orangehealth.business_utility;
 
+import java.io.IOException;
 import java.time.Duration;
 
 
@@ -15,8 +16,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.xml.XmlTest;
 
+import com.ty.orangehealth.Generic_Utility.FileUtility;
+import com.ty.orangehealth.Generic_Utility.ThreadSafeClass;
+
 
 public class BaseClassTest {
+	FileUtility readData = new FileUtility();
 	WebDriver driver;
 	public static WebDriver sdriver;
 	@BeforeSuite
@@ -24,19 +29,15 @@ public class BaseClassTest {
 		System.out.println("DB coonection created");
 	}
 	
-	@AfterSuite
-	public void configAS() {
-		System.out.println("DB coonection closed");
-	}
+	
 	
 	@BeforeClass
 	public void configBC(XmlTest test) {
-//		WebDriverUtility proUtil = new WebDriverUtility();
 		String browser = System.getProperty("browser");
 		if(browser == null || browser.isBlank()) {
 			browser = test.getParameter("browser");
 			if(browser == null || browser.isBlank()) {
-				browser = "chrome";
+				browser = readData.fromProperties("broowser");
 			}
 		}
 		
@@ -55,10 +56,12 @@ public class BaseClassTest {
 			throw new IllegalArgumentException("Invalid browser : " + browser);
 		}
 		
+		ThreadSafeClass.setDriver(driver);
+		driver = ThreadSafeClass.getDriver();
 		sdriver = driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://www.orangehealth.in/");
+		driver.get(readData.fromProperties("url"));
 		System.out.println("before class");
 		
 	}
@@ -69,4 +72,17 @@ public class BaseClassTest {
 		driver.quit();
 	}
 	
+	@AfterSuite
+	public void configAS() {
+		try {
+			if(FileUtility.wb == null) {
+				throw new IllegalArgumentException("Workbook is null ");
+			}
+			FileUtility.wb.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("DB coonection closed");
+	}
 }
