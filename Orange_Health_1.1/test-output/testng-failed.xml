@@ -9,7 +9,7 @@
           <include name="configAS"/>
           <include name="configBC"/>
           <include name="configBS"/>
-          <include name="demoTest"/>
+          <include name="de"/>
         </methods>
       </class> <!-- Cart_Module.Demo -->
     </classes>

@@ -10,7 +10,7 @@ public class WebDriverUtility
 	public void dragAndDrop(WebDriver driver,WebElement ele1,WebElement ele2)
 	{
 		Actions action =new Actions(driver);
-		action.dragAndDrop(ele1, ele2).perform();;
+		action.dragAndDrop(ele1, ele2).perform();
 	}
 
 	public void clickAndHold(WebDriver driver,WebElement ele1)
