@@ -6,6 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	WebDriver driver;
 	@FindBy
 	private WebElement suptBtn;
@@ -13,10 +18,10 @@ public class HomePage {
 	@FindBy
 	private WebElement testBtn;
 	
-	public HomePage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+	@FindBy
+	private WebElement orderNow;
+	
+	
 
 	public WebDriver getDriver() {
 		return driver;
@@ -28,6 +33,10 @@ public class HomePage {
 
 	public WebElement getTestBtn() {
 		return testBtn;
+	}
+	
+	public WebElement getOrderNowBtn() {
+		return orderNow;
 	}
 	
 	
