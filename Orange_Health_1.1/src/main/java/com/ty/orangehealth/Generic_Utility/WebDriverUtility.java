@@ -16,7 +16,7 @@ public class WebDriverUtility
 	public void clickAndHold(WebDriver driver,WebElement ele1)
 	{
 		Actions action = new Actions(driver);
-		action.clickAndHold(ele1).perform();;
+		action.clickAndHold(ele1).perform();
 	}
 
 	public void rightClick(WebDriver driver,WebElement ele)

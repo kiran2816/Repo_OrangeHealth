@@ -18,7 +18,7 @@ import com.ty.orangehealth.Generic_Utility.ThreadSafeClass;
 
 public class BaseClassTest {
 	protected FileUtility readData = new FileUtility();
-	WebDriver driver;
+	protected WebDriver driver;
 	public static WebDriver sdriver;
 	@BeforeSuite
 	public void configBS() {
